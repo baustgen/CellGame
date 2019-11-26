@@ -1,0 +1,122 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: dimgray;
+}
+
+h1, h2 {
+    font-family: 'Permanent Marker', cursive;
+    text-align: center;
+}
+
+header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title-bar {
+    height: 80px;
+    width: 100%;
+    text-align: center;
+    background-color: blueviolet;
+}
+
+.title-bar h1 {
+    position: relative;
+    top: 40%;
+}
+
+.nav-bar {
+    width: 100%;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-bar a {
+    padding: 8px;
+}
+
+
+.github-link {
+    height: 32px;
+    width: 32px;
+    background-image: url("../documents/images/GitHub.png");
+}
+
+.linkedin-link {
+    height: 32px;
+    width: 32px;
+    background-image: url("../documents/images/LinkedIn.png");
+}
+
+.content-container {
+    display: flex;
+    width: 90%;
+    margin: 20px auto;
+    justify-content: space-around;
+}
+
+aside {
+    box-sizing: border-box;
+    width: 16.66%;
+    margin: 10px;
+    padding: 15px;
+    border: 3px solid black;
+    border-radius: 5px;
+
+    background-color: lightgrey;
+}
+
+
+main {
+    box-sizing: border-box;
+    width: 66.66%;
+}
+
+
+h2 {
+    font-size: 24px;
+    display: block;
+    margin: 5px 0;
+}
+
+#wasd img {
+    width: 100%;
+}
+
+#arrows img {
+    width: 100%;
+}
+
+.controls-img {
+    width: 48%;
+    background-size: contain;
+    display: inline-block;
+    margin-top: 5px;
+}
+
+.directions-list {
+    list-style: circle inside;
+    text-indent: -1.5em;
+    padding-left: 1em;
+
+    font-size: 14px;
+}
+
+.directions-list li {
+    padding: 5px;
+    line-height: 20px;
+}
+
+.game-container {
+    display: flex;
+    justify-content: center;
+}
+
+canvas {
+    background-image: url(../documents/images/cell_bg.jpg);
+    border: 3px solid black;
+    border-radius: 5px;
+}

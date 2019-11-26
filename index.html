@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="./dist/bundle.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker|Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./stylesheets/reset.css">
+    <link rel="stylesheet" href="./stylesheets/cells.css">
     <title>Cells</title>
 </head>
 <body>
@@ -14,32 +17,42 @@
         </div>
         <nav class="nav-bar">
             <a href="https://github.com/baustgen/CellGame">
-                <div class="github-link">GH</div>
+                <div class="github-link"></div>
             </a>
             <a href="https://www.linkedin.com/in/braeden-austgen-a96b52148/">
-                <div class="linkedin-link">IN</div>
+                <div class="linkedin-link"></div>
             </a>
         </nav>
     </header>
 
-    <div>
+    <div class="content-container">
 
         <aside class="left-aside">
             <div class="controls">
                 <h2>Controls</h2>
-                <div class="controls-img"></div>
+                <p>Use arrow keys or WASD to move</p>
+                <div class="controls-img" id="wasd">
+                    <img src="./documents/images/wasd.png" alt="wasd keys">
+                </div>
+                <div class="controls-img" id="arrows">
+                    <img src="./documents/images/arrows.png" alt="arrow keys">
+                </div>
             </div>
             <div class="directions">
                 <h2>Directions</h2>
-                <ul>
-                    <li>Move into smaller bacteria to grow</li>
-                    <li>Don't get eaten by bacteria larger than you!</li>
+                <ul class="directions-list">
+                    <li>
+                        Move into smaller bacteria to grow
+                    </li>
+                    <li>
+                        Don't get eaten by bacteria larger than you!
+                    </li>
                 </ul>
             </div>
         </aside>
 
-        <main>
-            <canvas id="game-canvas" width="400px" height="300px" ></canvas>
+        <main class="game-container">
+            <canvas id="game-canvas" width="600px" height="400px" ></canvas>
         </main>
 
         <aside class="right-aside">
