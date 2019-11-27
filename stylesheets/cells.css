@@ -120,3 +120,7 @@ canvas {
     border: 3px solid black;
     border-radius: 5px;
 }
+
+.hidden-images {
+    display: none;
+}
