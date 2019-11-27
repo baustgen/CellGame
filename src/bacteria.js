@@ -4,7 +4,7 @@ class Bacteria {
         this.xPos = pos[0];
         this.yPos = pos[1];
         this.vel = this.xPos < 500 ? Math.floor(Math.random() * 5) : Math.floor(Math.random() * -5);
-        this.scale = Math.random() * 10;
+        this.scale = Math.floor(Math.random() * 10);
     }
 
     static randomPosition() {

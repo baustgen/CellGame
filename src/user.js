@@ -1,10 +1,10 @@
 class User {
-    constructor({ pos, vel, scale }) {
-        this.xPos = pos[0];
-        this.yPos = pos[1];
-        this.xVel = vel[0];
-        this.yVel = vel[1];
-        this.scale = scale;
+    constructor() {
+        this.xPos = 250;
+        this.yPos = 180;
+        this.xVel = 0;
+        this.yVel = 0;
+        this.scale = 0.6;
     }
 
     draw(ctx) {
