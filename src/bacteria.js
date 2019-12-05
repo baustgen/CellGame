@@ -3,8 +3,12 @@ class Bacteria {
         let pos = Bacteria.randomPosition()
         this.xPos = pos[0];
         this.yPos = pos[1];
-        this.vel = this.xPos < 500 ? Math.floor(Math.random() * 5) : Math.floor(Math.random() * -5);
-        this.scale = Math.floor(Math.random() * 20);
+        this.vel = this.xPos < 500 ? Math.floor(Math.random() * 9) + 1 : Math.floor(Math.random() * -9) - 1;
+        this.scale = Math.floor(Math.random() * 10);
+
+        if (this.vel === 0) {
+            this.xPos < 500 ? this.vel += 1 : this.vel -= 1;
+        }
     }
 
     static randomPosition() {
@@ -26,11 +30,11 @@ class Bacteria {
         } else {
             img.src = './documents/images/bacteria_red_left.png'
         }
-        ctx.drawImage(img, this.xPos, this.yPos, (10 * this.scale), (4 * this.scale));
+        ctx.drawImage(img, this.xPos, this.yPos, (20 * this.scale), (8 * this.scale));
     }
 
     move() {
-        this.xPos += this.vel;
+        this.xPos += this.vel/4;
     }
 }
 
