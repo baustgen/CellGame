@@ -1,10 +1,13 @@
 class Bacteria {
     constructor() {
-        let pos = Bacteria.randomPosition()
+        const pos = Bacteria.randomPosition()
         this.xPos = pos[0];
         this.yPos = pos[1];
         this.vel = this.xPos < 500 ? Math.floor(Math.random() * 7) + 2 : Math.floor(Math.random() * -7) - 2;
-        this.scale = Math.floor(Math.random() * 10);
+        const scale = Math.floor(Math.random() * 10);
+        this.xDim = (20 * scale);
+        this.yDim = (8 * scale);
+
 
         if (this.vel === 0) {
             this.xPos < 500 ? this.vel += 1 : this.vel -= 1;
@@ -30,7 +33,7 @@ class Bacteria {
         } else {
             img.src = './documents/images/bacteria_red_left.png'
         }
-        ctx.drawImage(img, this.xPos, this.yPos, (20 * this.scale), (8 * this.scale));
+        ctx.drawImage(img, this.xPos, this.yPos, this.xDim, this.yDim);
     }
 
     move() {
