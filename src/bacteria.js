@@ -4,7 +4,7 @@ class Bacteria {
         this.xPos = pos[0];
         this.yPos = pos[1];
         this.vel = this.xPos < 500 ? Math.floor(Math.random() * 5) : Math.floor(Math.random() * -5);
-        this.scale = Math.floor(Math.random() * 10);
+        this.scale = Math.floor(Math.random() * 20);
     }
 
     static randomPosition() {
@@ -26,7 +26,7 @@ class Bacteria {
         } else {
             img.src = './documents/images/bacteria_red_left.png'
         }
-        ctx.drawImage(img, this.xPos, this.yPos, (100 * this.scale), (43 * this.scale));
+        ctx.drawImage(img, this.xPos, this.yPos, (10 * this.scale), (4 * this.scale));
     }
 
     move() {

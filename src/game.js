@@ -6,6 +6,7 @@ class Game {
     constructor() {
         this.bacteria = []
         this.user = []
+        this.addBacteria(10);
 
     }
 
@@ -17,10 +18,10 @@ class Game {
     }
 
     draw(ctx) {
-        ctx.clearRect();
+        ctx.clearRect(0, 0, 600, 400);
         for (let i = 0; i < this.bacteria.length; i++) {
             const bact = this.bacteria[i];
-            bact.draw();
+            bact.draw(ctx);
         }
     }
 
