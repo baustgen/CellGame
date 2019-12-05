@@ -16,6 +16,21 @@ class Game {
         }
     }
 
+    draw(ctx) {
+        ctx.clearRect();
+        for (let i = 0; i < this.bacteria.length; i++) {
+            const bact = this.bacteria[i];
+            bact.draw();
+        }
+    }
+
+    moveObjects() {
+        for (let i = 0; i < this.bacteria.length; i++) {
+            const bact = this.bacteria[i];
+            bact.move();
+        }
+    }
+
 }
 
 export default Game;
