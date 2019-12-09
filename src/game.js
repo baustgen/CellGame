@@ -7,6 +7,7 @@ class Game {
         this.bacteria = []
         this.user = []
         this.addBacteria(8);
+        this.addUser();
     }
 
     addBacteria(num = 1) {
@@ -14,6 +15,11 @@ class Game {
             let bact = new Bacteria();
             this.bacteria.push(bact);     
         }
+    }
+
+    addUser() {
+            let u = new User();
+            this.user.push(u);     
     }
 
     draw(ctx) {
@@ -25,6 +31,7 @@ class Game {
             const bact = this.bacteria[i];
             bact.draw(ctx);
         }
+        this.user[0].draw(ctx)  ;
     }
 
     moveObjects() {

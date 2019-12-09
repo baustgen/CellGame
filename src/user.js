@@ -5,8 +5,8 @@ class User {
         this.xVel = 0;
         this.yVel = 0;
         this.scale = 0.6;
-        this.xDim = (100 * scale);
-        this.yDim = (43 * scale);
+        this.xDim = (100 * this.scale);
+        this.yDim = (43 * this.scale);
     }
 
     draw(ctx) {
