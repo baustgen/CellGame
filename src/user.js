@@ -5,6 +5,8 @@ class User {
         this.xVel = 0;
         this.yVel = 0;
         this.scale = 0.6;
+        this.xDim = (100 * scale);
+        this.yDim = (43 * scale);
     }
 
     draw(ctx) {
@@ -14,7 +16,7 @@ class User {
         } else {
             img.src = './documents/images/bacteria_blue_left.png'
         }
-        ctx.drawImage(img, this.xPos, this.yPos, (100 * this.scale), (43 * this.scale));
+        ctx.drawImage(img, this.xPos, this.yPos, this.xDim, this.yDim);
     }
 
     move() {
@@ -50,7 +52,9 @@ class User {
     }
 
     grow(size) {
-        this.scale += size
+        this.scale += size;
+        this.xDim = (100 * scale);
+        this.yDim = (43 * scale);
     }
 }
 
