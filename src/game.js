@@ -43,6 +43,7 @@ class Game {
                 bact.reset();
             }
         }
+        this.user[0].move()
     }
 
     checkCollision() {
