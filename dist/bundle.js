@@ -240,6 +240,7 @@ function () {
   function Game() {
     _classCallCheck(this, Game);
 
+    this.over = false;
     this.bacteria = [];
     this.user = [];
     this.addBacteria(8);
@@ -301,21 +302,17 @@ function () {
         var bact = this.bacteria[i];
 
         if (_util__WEBPACK_IMPORTED_MODULE_2__["default"].collision(bact, user)) {
-          if (user.scale > 10) {// this.winGame();
+          if (user.scale > 10) {
+            this.over = 'win';
           } else if (user.scale > bact.scale) {
             bact.reset();
             user.grow(0.5);
-          } else {// this.loseGame();
+          } else {
+            this.over = 'loss';
           }
         }
       }
     }
-  }, {
-    key: "winGame",
-    value: function winGame() {}
-  }, {
-    key: "loseGame",
-    value: function loseGame() {}
   }]);
 
   return Game;
@@ -359,38 +356,85 @@ function () {
       var _this = this;
 
       this.bindKeyHandlers();
-      setInterval(function () {
-        _this.game.moveObjects();
+      this.gameInterval = setInterval(function () {
+        if (_this.game.over === false) {
+          _this.game.moveObjects();
 
-        _this.game.checkCollision();
+          _this.game.checkCollision();
 
-        _this.game.draw(_this.ctx);
+          _this.game.draw(_this.ctx);
+        } else {
+          _this.end(_this.game.over);
+        }
       }, 20);
+    }
+  }, {
+    key: "end",
+    value: function end(type) {
+      var _this2 = this;
+
+      clearInterval(this.gameInterval);
+      this.ctx.clearRect(0, 0, 600, 400);
+      var canvas = document.getElementById('game-canvas');
+
+      var starter = function starter(e) {
+        _this2.ctx.clearRect(0, 0, 600, 400);
+
+        var testGameView = new GameView(_this2.ctx);
+        testGameView.start();
+        e.target.removeEventListener("click", starter);
+      };
+
+      if (type === 'loss') {
+        this.ctx.fillStyle = "rgba(0, 0, 0, .6)";
+        this.ctx.fillRect(0, 0, 600, 400);
+        this.ctx.font = "26px Trebuchet MS";
+        this.ctx.fillStyle = "#FFF";
+        this.ctx.textAlign = "center";
+        this.ctx.fillText("Game Over", 300, 150);
+        this.ctx.font = "20px Trebuchet MS";
+        this.ctx.fillText("Avoid large bacteria until you're big enough to eat them!", 300, 225);
+        this.ctx.font = "14px Trebuchet MS";
+        this.ctx.fillText("Click Here to try again!", 300, 275);
+        canvas.addEventListener("click", starter);
+      } else if (type === 'win') {
+        this.ctx.fillStyle = "rgba(255, 255, 255, .8)";
+        this.ctx.fillRect(0, 0, 600, 400);
+        this.ctx.font = "26px Trebuchet MS";
+        this.ctx.fillStyle = "#000";
+        this.ctx.textAlign = "center";
+        this.ctx.fillText("Victory!", 300, 150);
+        this.ctx.font = "20px Trebuchet MS";
+        this.ctx.fillText("You're the best bacteria in the Petri dish!", 300, 225);
+        this.ctx.font = "14px Trebuchet MS";
+        this.ctx.fillText("Click anywhere to try again!", 300, 300);
+        canvas.addEventListener("click", starter);
+      }
     }
   }, {
     key: "bindKeyHandlers",
     value: function bindKeyHandlers() {
-      var _this2 = this;
+      var _this3 = this;
 
       document.addEventListener("keydown", function (e) {
         e.preventDefault();
 
         if (e.keyCode === 65) {
-          _this2.game.user[0].userMove('left');
+          _this3.game.user[0].userMove('left');
         } else if (e.keyCode === 87) {
-          _this2.game.user[0].userMove('up');
+          _this3.game.user[0].userMove('up');
         } else if (e.keyCode === 68) {
-          _this2.game.user[0].userMove('right');
+          _this3.game.user[0].userMove('right');
         } else if (e.keyCode === 83) {
-          _this2.game.user[0].userMove('down');
+          _this3.game.user[0].userMove('down');
         } else if (e.keyCode === 37) {
-          _this2.game.user[0].userMove('left');
+          _this3.game.user[0].userMove('left');
         } else if (e.keyCode === 38) {
-          _this2.game.user[0].userMove('up');
+          _this3.game.user[0].userMove('up');
         } else if (e.keyCode === 39) {
-          _this2.game.user[0].userMove('right');
+          _this3.game.user[0].userMove('right');
         } else if (e.keyCode === 40) {
-          _this2.game.user[0].userMove('down');
+          _this3.game.user[0].userMove('down');
         }
       });
     }

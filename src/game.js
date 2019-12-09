@@ -5,6 +5,7 @@ import Util from './util'
 
 class Game {
     constructor() {
+        this.over = false;
         this.bacteria = []
         this.user = []
         this.addBacteria(8);
@@ -53,12 +54,12 @@ class Game {
             const bact = this.bacteria[i];
             if (Util.collision(bact, user)) {
                 if (user.scale > 10) {
-                    // this.winGame();
+                    this.over = 'win'
                 } else if (user.scale > bact.scale) {
                     bact.reset()
                     user.grow(0.5)
                 } else {
-                    // this.loseGame();
+                    this.over = 'loss'
                 }
             }
             
