@@ -37,13 +37,13 @@ class User {
                 }
                 break;
             case 'up':
-                if (this.yVel < 10) {
-                    this.yVel += 1
+                if (this.yVel > -10) {
+                    this.yVel -= 1
                 }
                 break;
             case 'down':
-                if (this.yVel > -10) {
-                    this.yVel -= 1
+                if (this.yVel < 10) {
+                    this.yVel += 1
                 }
                 break;
             default:
