@@ -4,9 +4,9 @@ class User {
         this.yPos = 180;
         this.xVel = 0;
         this.yVel = 0;
-        this.scale = 0.6;
-        this.xDim = (100 * this.scale);
-        this.yDim = (43 * this.scale);
+        this.scale = 2.5;
+        this.xDim = (20 * this.scale);
+        this.yDim = (8 * this.scale);
     }
 
     draw(ctx) {
