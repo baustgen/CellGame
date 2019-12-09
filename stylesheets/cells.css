@@ -18,13 +18,21 @@ header {
 .title-bar {
     height: 80px;
     width: 100%;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #1CBCDA;
 }
 
 .title-bar h1 {
-    position: relative;
-    top: 40%;
+    font-size: 48px;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }
 
 .nav-bar {
@@ -35,7 +43,7 @@ header {
 }
 
 .nav-bar a {
-    padding: 8px;
+    padding: 8px 30px;
 }
 
 
