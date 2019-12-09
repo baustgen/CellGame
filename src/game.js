@@ -1,5 +1,6 @@
 import Bacteria from "./bacteria"
 import User from './user'
+import Util from './util'
 
 
 class Game {
@@ -31,7 +32,7 @@ class Game {
             const bact = this.bacteria[i];
             bact.draw(ctx);
         }
-        this.user[0].draw(ctx)  ;
+        this.user[0].draw(ctx);
     }
 
     moveObjects() {
@@ -39,18 +40,30 @@ class Game {
             const bact = this.bacteria[i];
             bact.move();
             if (bact.xPos < -100 || bact.xPos > 600) {
-                this.remove(bact)
+                bact.reset();
             }
         }
     }
 
-    remove(object) {
-        if (object instanceof Bacteria) {
-            this.bacteria.splice(this.bacteria.indexOf(object), 1);
-        } else if (object instanceof User) {
-            this.user.splice(this.user.indexOf(object), 1);
+    checkCollision() {
+        let user = this.user[0];
+
+        for (let i = 0; i < this.bacteria.length; i++) {
+            const bact = this.bacteria[i];
+            if (Util.collision(bact, user)) {
+                if (user.scale > 10) {
+                    // this.winGame();
+                } else if (user.scale > bact.scale) {
+                    bact.reset()
+                    user.grow(0.5)
+                } else {
+                    // this.loseGame();
+                }
+            }
+            
         }
-    };
+    }
+
 }
 
 export default Game;

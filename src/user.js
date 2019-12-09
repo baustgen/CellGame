@@ -4,7 +4,7 @@ class User {
         this.yPos = 180;
         this.xVel = 0;
         this.yVel = 0;
-        this.scale = 2.5;
+        this.scale = 5.5;
         this.xDim = (20 * this.scale);
         this.yDim = (8 * this.scale);
     }
@@ -53,8 +53,8 @@ class User {
 
     grow(size) {
         this.scale += size;
-        this.xDim = (100 * scale);
-        this.yDim = (43 * scale);
+        this.xDim = (20 * this.scale);
+        this.yDim = (8 * this.scale);
     }
 }
 
