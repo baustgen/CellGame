@@ -5,10 +5,12 @@ const Util = {
         const bactCenterX = bact.xPos + bact.xDim / 2;
         const userCenterY = user.yPos + user.yDim / 2;
         const bactCenterY = bact.yPos + bact.yDim / 2;
-        if ((Math.abs(userCenterX - bactCenterX) < (bact.xDim / 2.5 + user.xDim / 2.5)) && (Math.abs(userCenterY - bactCenterY) < (bact.yDim / 3 + user.yDim / 3))) {
+        if ((Math.abs(userCenterX - bactCenterX) < (bact.xDim / 2.2 + user.xDim / 2.2)) && (Math.abs(userCenterY - bactCenterY) < (bact.yDim / 2.2 + user.yDim / 2.2))) {
             return true;
         } else {
             return false;
         }
     }
 }
+
+export default Util;
