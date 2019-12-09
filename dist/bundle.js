@@ -189,8 +189,20 @@ __webpack_require__.r(__webpack_exports__);
 document.addEventListener('DOMContentLoaded', function () {
   var canvas = document.getElementById('game-canvas');
   var ctx = canvas.getContext("2d");
-  var testGameView = new _gameView__WEBPACK_IMPORTED_MODULE_3__["default"](ctx);
-  testGameView.start();
+  ctx.fillStyle = "rgba(100, 100, 100, .5)";
+  ctx.fillRect(0, 0, 600, 400);
+  ctx.font = "26px Trebuchet MS";
+  ctx.fillStyle = "#000";
+  ctx.textAlign = "center";
+  ctx.fillText("Click here to start!", 300, 225);
+
+  var starter = function starter(e) {
+    var testGameView = new _gameView__WEBPACK_IMPORTED_MODULE_3__["default"](ctx);
+    testGameView.start();
+    e.target.removeEventListener("click", starter);
+  };
+
+  canvas.addEventListener("click", starter);
   window.ctx = ctx;
   window.Bacteria = _bacteria__WEBPACK_IMPORTED_MODULE_0__["default"];
   window.User = _user__WEBPACK_IMPORTED_MODULE_1__["default"];
@@ -298,6 +310,12 @@ function () {
         }
       }
     }
+  }, {
+    key: "winGame",
+    value: function winGame() {}
+  }, {
+    key: "loseGame",
+    value: function loseGame() {}
   }]);
 
   return Game;
