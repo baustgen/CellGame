@@ -107,13 +107,13 @@ function () {
   function Bacteria() {
     _classCallCheck(this, Bacteria);
 
+    this.scale = Math.floor(Math.random() * 10) + 1;
+    this.xDim = 20 * this.scale;
+    this.yDim = 8 * this.scale;
     var pos = Bacteria.randomPosition();
     this.xPos = pos[0];
     this.yPos = pos[1];
     this.vel = this.xPos < 500 ? Math.floor(Math.random() * 7) + 2 : Math.floor(Math.random() * -7) - 2;
-    this.scale = Math.floor(Math.random() * 10) + 1;
-    this.xDim = 20 * this.scale;
-    this.yDim = 8 * this.scale;
   }
 
   _createClass(Bacteria, [{
@@ -152,9 +152,9 @@ function () {
       var coin = Math.random();
 
       if (coin > 0.5) {
-        x = -100;
+        x = -150;
       } else {
-        x = 600;
+        x = 615;
       }
 
       var y = Math.floor(Math.random() * 350);
@@ -243,7 +243,7 @@ function () {
     this.over = false;
     this.bacteria = [];
     this.user = [];
-    this.addBacteria(8);
+    this.addBacteria(7);
     this.addUser();
   }
 
@@ -268,8 +268,8 @@ function () {
     value: function draw(ctx) {
       ctx.clearRect(0, 0, 600, 400);
 
-      if (this.bacteria.length < 8) {
-        this.addBacteria(8 - this.bacteria.length);
+      if (this.bacteria.length < 7) {
+        this.addBacteria(7 - this.bacteria.length);
       }
 
       for (var i = 0; i < this.bacteria.length; i++) {
@@ -286,7 +286,7 @@ function () {
         var bact = this.bacteria[i];
         bact.move();
 
-        if (bact.xPos < -100 || bact.xPos > 600) {
+        if (bact.xPos < Math.floor(-20 - bact.xDim) || Math.floor(bact.xPos) > 620) {
           bact.reset();
         }
       }
@@ -491,7 +491,7 @@ function () {
       var newX = this.xPos + this.xVel;
       var newY = this.yPos + this.yVel;
 
-      if (newX > 600 - this.xDim / 2 || newX < 0 - this.xDim / 2) {
+      if (newX > 600 || newX < 0) {
         this.yPos = newY;
         this.xVel = 0;
       } else if (newY > 400 - this.yDim / 2 || newY < 0 - this.yDim / 2) {
