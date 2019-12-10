@@ -1,7 +1,5 @@
-import Bacteria from './bacteria'
-import User from './user'
-import Game from './game'
 import GameView from './gameView'
+import Util from './util'
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -9,11 +7,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const ctx = canvas.getContext("2d")
 
     ctx.fillStyle = "rgba(100, 100, 100, .5)";
-    ctx.fillRect(0, 0, 600, 400);
+    ctx.fillRect(0, 0, Util.DIMX, Util.DimY);
     ctx.font = "26px Trebuchet MS";
     ctx.fillStyle = "#000";
     ctx.textAlign = "center";
-    ctx.fillText("Click here to start!", 300, 225);
+    ctx.fillText("Click here to start!", 350, 250);
     
     const starter = (e) => {
         const gameView = new GameView(ctx);

@@ -20,7 +20,7 @@ class GameView {
             this.bindKeyHandlers();
             this.initial = false;
         }
-        this.ctx.clearRect(0, 0, 600, 400);
+        this.ctx.clearRect(0, 0, 700, 500);
         const canvas = document.getElementById('game-canvas')
         canvas.removeEventListener("click", this.start);
 
@@ -37,7 +37,7 @@ class GameView {
 
     end(type) {
         clearInterval(this.gameInterval);
-        this.ctx.clearRect(0, 0, 600, 400);
+        this.ctx.clearRect(0, 0, 700, 500);
         this.game.backgroundAudio.pause()
         this.game.backgroundAudio.remove()
 
@@ -45,29 +45,29 @@ class GameView {
 
         if (type === 'loss') {
             this.ctx.fillStyle = "rgba(0, 0, 0, .6)";
-            this.ctx.fillRect(0, 0, 600, 400);
-            this.ctx.font = "26px Trebuchet MS";
+            this.ctx.fillRect(0, 0, 700, 500);
+            this.ctx.font = "36px Roboto";
             this.ctx.fillStyle = "#FFF";
             this.ctx.textAlign = "center";
-            this.ctx.fillText("Game Over", 300, 150);
-            this.ctx.font = "20px Trebuchet MS";
-            this.ctx.fillText("Avoid large bacteria until you're big enough to eat them!", 300, 225);
-            this.ctx.font = "14px Trebuchet MS";
-            this.ctx.fillText("Click Here to try again!", 300, 275);
+            this.ctx.fillText("Game Over", 350, 200);
+            this.ctx.font = "24px Roboto";
+            this.ctx.fillText("Avoid large bacteria until you're big enough to eat them!", 350,275);
+            this.ctx.font = "20px Roboto";
+            this.ctx.fillText("Click here to try again", 350, 325);
 
             canvas.addEventListener("click", this.start);
 
         } else if (type === 'win') {
             this.ctx.fillStyle = "rgba(255, 255, 255, .8)";
-            this.ctx.fillRect(0, 0, 600, 400);
-            this.ctx.font = "26px Trebuchet MS";
+            this.ctx.fillRect(0, 0, 700, 500);
+            this.ctx.font = "36px Roboto";
             this.ctx.fillStyle = "#000";
             this.ctx.textAlign = "center";
-            this.ctx.fillText("Victory!", 300, 150);
-            this.ctx.font = "20px Trebuchet MS";
-            this.ctx.fillText("You're the best bacteria in the Petri dish!", 300, 225);
-            this.ctx.font = "14px Trebuchet MS";
-            this.ctx.fillText("Click anywhere to try again!", 300, 300);
+            this.ctx.fillText("Victory!", 350, 200);
+            this.ctx.font = "24px Roboto";
+            this.ctx.fillText("You're the best bacteria in the Petri dish!", 350, 275);
+            this.ctx.font = "20px Roboto";
+            this.ctx.fillText("Click here to try again", 350, 325);
 
             canvas.addEventListener("click", this.start);
         }

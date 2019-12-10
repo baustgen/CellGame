@@ -1,7 +1,9 @@
+import Util from './util'
+
 class User {
     constructor() {
-        this.xPos = 250;
-        this.yPos = 180;
+        this.xPos = 325;
+        this.yPos = 225;
         this.xVel = 0;
         this.yVel = 0;
         this.scale = 3.5;
@@ -20,7 +22,7 @@ class User {
 
         let newX = this.xPos + this.xVel;
         let newY = this.yPos + this.yVel;
-        if (newX > 600 - this.xDim || newX < 0) {
+        if (newX > 700 - this.xDim || newX < 0) {
             this.yPos = newY;
             this.xVel = 0;
             if (this.yVel > 0) {
@@ -28,7 +30,7 @@ class User {
             } else {
                 this.yVel += 0.025
             }
-        } else if (newY > 400 - (this.yDim / 2) || newY < 0 - (this.yDim / 2)) {
+        } else if (newY > 500 - (this.yDim / 2) || newY < 0 - (this.yDim / 2)) {
             this.xPos = newX;
             this.yVel = 0;
             if (this.xVel > 0) {

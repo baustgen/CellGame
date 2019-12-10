@@ -1,5 +1,4 @@
 const Util = {
-
     collision(bact, user) {
         const userCenterX = user.xPos + user.xDim / 2;
         const bactCenterX = bact.xPos + bact.xDim / 2;

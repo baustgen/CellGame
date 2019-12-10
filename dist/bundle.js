@@ -95,11 +95,14 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util */ "./src/util.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
 
 var Bacteria =
 /*#__PURE__*/
@@ -113,7 +116,7 @@ function () {
     var pos = Bacteria.randomPosition();
     this.xPos = pos[0];
     this.yPos = pos[1];
-    this.vel = this.xPos < 500 ? Math.floor(Math.random() * 7) + 2 : Math.floor(Math.random() * -7) - 2;
+    this.vel = this.xPos < 0 ? Math.floor(Math.random() * 7) + 2 : Math.floor(Math.random() * -7) - 2;
   }
 
   _createClass(Bacteria, [{
@@ -152,12 +155,12 @@ function () {
       var coin = Math.random();
 
       if (coin > 0.5) {
-        x = -150;
+        x = -200;
       } else {
-        x = 615;
+        x = 750;
       }
 
-      var y = Math.floor(Math.random() * 360) - 10;
+      var y = Math.floor(Math.random() * 460) - 10;
       return [x, y];
     }
   }]);
@@ -178,36 +181,27 @@ function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _bacteria__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./bacteria */ "./src/bacteria.js");
-/* harmony import */ var _user__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./user */ "./src/user.js");
-/* harmony import */ var _game__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./game */ "./src/game.js");
-/* harmony import */ var _gameView__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./gameView */ "./src/gameView.js");
-
-
+/* harmony import */ var _gameView__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./gameView */ "./src/gameView.js");
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./util */ "./src/util.js");
 
 
 document.addEventListener('DOMContentLoaded', function () {
   var canvas = document.getElementById('game-canvas');
   var ctx = canvas.getContext("2d");
   ctx.fillStyle = "rgba(100, 100, 100, .5)";
-  ctx.fillRect(0, 0, 600, 400);
+  ctx.fillRect(0, 0, _util__WEBPACK_IMPORTED_MODULE_1__["default"].DIMX, _util__WEBPACK_IMPORTED_MODULE_1__["default"].DimY);
   ctx.font = "26px Trebuchet MS";
   ctx.fillStyle = "#000";
   ctx.textAlign = "center";
-  ctx.fillText("Click here to start!", 300, 225);
+  ctx.fillText("Click here to start!", 350, 250);
 
   var starter = function starter(e) {
-    var testGameView = new _gameView__WEBPACK_IMPORTED_MODULE_3__["default"](ctx);
-    testGameView.start();
+    var gameView = new _gameView__WEBPACK_IMPORTED_MODULE_0__["default"](ctx);
+    gameView.start();
     e.target.removeEventListener("click", starter);
   };
 
   canvas.addEventListener("click", starter);
-  window.ctx = ctx;
-  window.Bacteria = _bacteria__WEBPACK_IMPORTED_MODULE_0__["default"];
-  window.User = _user__WEBPACK_IMPORTED_MODULE_1__["default"];
-  window.Game = _game__WEBPACK_IMPORTED_MODULE_2__["default"];
-  window.GameView = _gameView__WEBPACK_IMPORTED_MODULE_3__["default"];
 });
 
 /***/ }),
@@ -276,7 +270,7 @@ function () {
   }, {
     key: "draw",
     value: function draw(ctx) {
-      ctx.clearRect(0, 0, 600, 400);
+      ctx.clearRect(0, 0, 700, 500);
 
       if (this.bacteria.length < 7) {
         this.addBacteria(7 - this.bacteria.length);
@@ -296,7 +290,7 @@ function () {
         var bact = this.bacteria[i];
         bact.move();
 
-        if (bact.xPos < Math.floor(-20 - bact.xDim) || Math.floor(bact.xPos) > 620) {
+        if (bact.xPos < Math.floor(-20 - bact.xDim) || Math.floor(bact.xPos) > 750) {
           bact.reset();
         }
       }
@@ -344,14 +338,11 @@ function () {
     value: function audioToggle() {
       var mute = document.querySelector('.mute');
       mute.classList.toggle("active");
-      debugger;
 
       if (this.muted === true) {
-        debugger;
         this.muted = false;
         this.backgroundAudio.play();
       } else {
-        debugger;
         this.muted = true;
         this.backgroundAudio.pause();
       }
@@ -411,7 +402,7 @@ function () {
         this.initial = false;
       }
 
-      this.ctx.clearRect(0, 0, 600, 400);
+      this.ctx.clearRect(0, 0, 700, 500);
       var canvas = document.getElementById('game-canvas');
       canvas.removeEventListener("click", this.start);
       this.gameInterval = setInterval(function () {
@@ -430,34 +421,34 @@ function () {
     key: "end",
     value: function end(type) {
       clearInterval(this.gameInterval);
-      this.ctx.clearRect(0, 0, 600, 400);
+      this.ctx.clearRect(0, 0, 700, 500);
       this.game.backgroundAudio.pause();
       this.game.backgroundAudio.remove();
       var canvas = document.getElementById('game-canvas');
 
       if (type === 'loss') {
         this.ctx.fillStyle = "rgba(0, 0, 0, .6)";
-        this.ctx.fillRect(0, 0, 600, 400);
-        this.ctx.font = "26px Trebuchet MS";
+        this.ctx.fillRect(0, 0, 700, 500);
+        this.ctx.font = "36px Roboto";
         this.ctx.fillStyle = "#FFF";
         this.ctx.textAlign = "center";
-        this.ctx.fillText("Game Over", 300, 150);
-        this.ctx.font = "20px Trebuchet MS";
-        this.ctx.fillText("Avoid large bacteria until you're big enough to eat them!", 300, 225);
-        this.ctx.font = "14px Trebuchet MS";
-        this.ctx.fillText("Click Here to try again!", 300, 275);
+        this.ctx.fillText("Game Over", 350, 200);
+        this.ctx.font = "24px Roboto";
+        this.ctx.fillText("Avoid large bacteria until you're big enough to eat them!", 350, 275);
+        this.ctx.font = "20px Roboto";
+        this.ctx.fillText("Click here to try again", 350, 325);
         canvas.addEventListener("click", this.start);
       } else if (type === 'win') {
         this.ctx.fillStyle = "rgba(255, 255, 255, .8)";
-        this.ctx.fillRect(0, 0, 600, 400);
-        this.ctx.font = "26px Trebuchet MS";
+        this.ctx.fillRect(0, 0, 700, 500);
+        this.ctx.font = "36px Roboto";
         this.ctx.fillStyle = "#000";
         this.ctx.textAlign = "center";
-        this.ctx.fillText("Victory!", 300, 150);
-        this.ctx.font = "20px Trebuchet MS";
-        this.ctx.fillText("You're the best bacteria in the Petri dish!", 300, 225);
-        this.ctx.font = "14px Trebuchet MS";
-        this.ctx.fillText("Click anywhere to try again!", 300, 300);
+        this.ctx.fillText("Victory!", 350, 200);
+        this.ctx.font = "24px Roboto";
+        this.ctx.fillText("You're the best bacteria in the Petri dish!", 350, 275);
+        this.ctx.font = "20px Roboto";
+        this.ctx.fillText("Click here to try again", 350, 325);
         canvas.addEventListener("click", this.start);
       }
     }
@@ -508,11 +499,14 @@ function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util */ "./src/util.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
 
 var User =
 /*#__PURE__*/
@@ -520,8 +514,8 @@ function () {
   function User() {
     _classCallCheck(this, User);
 
-    this.xPos = 250;
-    this.yPos = 180;
+    this.xPos = 325;
+    this.yPos = 225;
     this.xVel = 0;
     this.yVel = 0;
     this.scale = 3.5;
@@ -543,15 +537,39 @@ function () {
       var newX = this.xPos + this.xVel;
       var newY = this.yPos + this.yVel;
 
-      if (newX > 600 - this.xDim || newX < 0) {
+      if (newX > 700 - this.xDim || newX < 0) {
         this.yPos = newY;
         this.xVel = 0;
-      } else if (newY > 400 - this.yDim / 2 || newY < 0 - this.yDim / 2) {
+
+        if (this.yVel > 0) {
+          this.yVel -= 0.025;
+        } else {
+          this.yVel += 0.025;
+        }
+      } else if (newY > 500 - this.yDim / 2 || newY < 0 - this.yDim / 2) {
         this.xPos = newX;
         this.yVel = 0;
+
+        if (this.xVel > 0) {
+          this.xVel -= 0.025;
+        } else {
+          this.xVel += 0.025;
+        }
       } else {
         this.xPos = newX;
         this.yPos = newY;
+
+        if (this.xVel > 0) {
+          this.xVel -= 0.025;
+        } else {
+          this.xVel += 0.025;
+        }
+
+        if (this.yVel > 0) {
+          this.yVel -= 0.025;
+        } else {
+          this.yVel += 0.025;
+        }
       }
     }
   }, {

@@ -1,3 +1,5 @@
+import { DIMX, DIMY } from "./util";
+
 class Bacteria {
     constructor() {
         this.scale = Math.floor(Math.random() * 9) + 2;
@@ -6,18 +8,18 @@ class Bacteria {
         const pos = Bacteria.randomPosition()
         this.xPos = pos[0];
         this.yPos = pos[1];
-        this.vel = this.xPos < 500 ? Math.floor(Math.random() * 7) + 2 : Math.floor(Math.random() * -7) - 2;
+        this.vel = this.xPos < 0 ? Math.floor(Math.random() * 7) + 2 : Math.floor(Math.random() * -7) - 2;
     }
 
     static randomPosition() {
         let x;
         let coin = Math.random();
         if (coin > 0.5) {
-            x = -150;
+            x = -200;
         } else {
-            x = 615;
+            x = 750;
         }
-        const y = Math.floor(Math.random() * 360) - 10;
+        const y = Math.floor(Math.random() * 460) - 10;
         return [x, y];
     }
 

@@ -61,7 +61,7 @@ footer {
 
 .content-container {
     display: flex;
-    width: 90%;
+    width: 95%;
     margin: 20px auto;
     justify-content: space-around;
 }
@@ -147,7 +147,7 @@ canvas {
     width: 40px;
     position: relative;
     bottom: 60px;
-    left: 265px;
+    left: 320px;
 }
 
 .active {
