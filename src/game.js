@@ -91,14 +91,13 @@ class Game {
     audioToggle() {
         const mute = document.querySelector('.mute');
         mute.classList.toggle("active")
-        debugger;
 
         if (this.muted === true) {
-            debugger;
+
             this.muted = false;
             this.backgroundAudio.play();
         } else {
-            debugger;
+
             this.muted = true;
             this.backgroundAudio.pause();
         }
