@@ -23,12 +23,32 @@ class User {
         if (newX > 600 - this.xDim || newX < 0) {
             this.yPos = newY;
             this.xVel = 0;
+            if (this.yVel > 0) {
+                this.yVel -= 0.025
+            } else {
+                this.yVel += 0.025
+            }
         } else if (newY > 400 - (this.yDim / 2) || newY < 0 - (this.yDim / 2)) {
             this.xPos = newX;
             this.yVel = 0;
+            if (this.xVel > 0) {
+                this.xVel -= 0.025
+            } else {
+                this.xVel += 0.025
+            }
         } else {
             this.xPos = newX;
             this.yPos = newY;
+            if (this.xVel > 0) {
+                this.xVel -= 0.025
+            } else {
+                this.xVel += 0.025
+            }
+            if (this.yVel > 0) {
+                this.yVel -= 0.025
+            } else {
+                this.yVel += 0.025
+            }
         }
     }
 
