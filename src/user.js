@@ -4,7 +4,7 @@ class User {
         this.yPos = 180;
         this.xVel = 0;
         this.yVel = 0;
-        this.scale = 2.5;
+        this.scale = 3.5;
         this.xDim = (20 * this.scale);
         this.yDim = (8 * this.scale);
         this.src = './documents/images/bacteria_blue_right.png'

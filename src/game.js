@@ -53,7 +53,7 @@ class Game {
         for (let i = 0; i < this.bacteria.length; i++) {
             const bact = this.bacteria[i];
             if (Util.collision(bact, user)) {
-                if (user.scale > 10) {
+                if (user.scale > 12) {
                     this.over = 'win'
                 } else if (user.scale > bact.scale) {
                     bact.reset()

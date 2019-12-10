@@ -107,7 +107,7 @@ function () {
   function Bacteria() {
     _classCallCheck(this, Bacteria);
 
-    this.scale = Math.floor(Math.random() * 10) + 1;
+    this.scale = Math.floor(Math.random() * 9) + 2;
     this.xDim = 20 * this.scale;
     this.yDim = 8 * this.scale;
     var pos = Bacteria.randomPosition();
@@ -119,7 +119,7 @@ function () {
   _createClass(Bacteria, [{
     key: "draw",
     value: function draw(ctx) {
-      var img = new Image(10, 10);
+      var img = new Image(100, 100);
 
       if (this.vel > 0) {
         img.src = './documents/images/bacteria_red_right.png';
@@ -137,13 +137,13 @@ function () {
   }, {
     key: "reset",
     value: function reset() {
+      this.scale = Math.floor(Math.random() * 9) + 2;
+      this.xDim = 20 * this.scale;
+      this.yDim = 8 * this.scale;
       var pos = Bacteria.randomPosition();
       this.xPos = pos[0];
       this.yPos = pos[1];
       this.vel = this.xPos < 500 ? Math.floor(Math.random() * 7) + 2 : Math.floor(Math.random() * -7) - 2;
-      this.scale = Math.floor(Math.random() * 10) + 1;
-      this.xDim = 20 * this.scale;
-      this.yDim = 8 * this.scale;
     }
   }], [{
     key: "randomPosition",
@@ -302,7 +302,7 @@ function () {
         var bact = this.bacteria[i];
 
         if (_util__WEBPACK_IMPORTED_MODULE_2__["default"].collision(bact, user)) {
-          if (user.scale > 10) {
+          if (user.scale > 12) {
             this.over = 'win';
           } else if (user.scale > bact.scale) {
             bact.reset();
@@ -472,7 +472,7 @@ function () {
     this.yPos = 180;
     this.xVel = 0;
     this.yVel = 0;
-    this.scale = 2.5;
+    this.scale = 3.5;
     this.xDim = 20 * this.scale;
     this.yDim = 8 * this.scale;
     this.src = './documents/images/bacteria_blue_right.png';
