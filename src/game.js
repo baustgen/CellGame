@@ -8,7 +8,7 @@ class Game {
         this.over = false;
         this.bacteria = []
         this.user = []
-        this.addBacteria(8);
+        this.addBacteria(7);
         this.addUser();
     }
 
@@ -26,8 +26,8 @@ class Game {
 
     draw(ctx) {
         ctx.clearRect(0, 0, 600, 400);
-        if (this.bacteria.length < 8) {
-            this.addBacteria(8 - this.bacteria.length)
+        if (this.bacteria.length < 7) {
+            this.addBacteria(7 - this.bacteria.length)
         }
         for (let i = 0; i < this.bacteria.length; i++) {
             const bact = this.bacteria[i];
@@ -40,7 +40,7 @@ class Game {
         for (let i = 0; i < this.bacteria.length; i++) {
             const bact = this.bacteria[i];
             bact.move();
-            if (bact.xPos < -100 || bact.xPos > 600) {
+            if (bact.xPos < Math.floor(-20 - bact.xDim) || Math.floor(bact.xPos) > 620) {
                 bact.reset();
             }
         }
