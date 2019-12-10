@@ -20,7 +20,7 @@ class User {
 
         let newX = this.xPos + this.xVel;
         let newY = this.yPos + this.yVel;
-        if (newX > 600 || newX < 0) {
+        if (newX > 600 - this.xDim || newX < 0) {
             this.yPos = newY;
             this.xVel = 0;
         } else if (newY > 400 - (this.yDim / 2) || newY < 0 - (this.yDim / 2)) {

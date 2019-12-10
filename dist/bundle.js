@@ -485,6 +485,8 @@ function () {
           _this2.game.user[0].userMove('right');
         } else if (e.keyCode === 40) {
           _this2.game.user[0].userMove('down');
+        } else if (e.keyCode === 77) {
+          _this2.game.audioToggle();
         }
       });
     }
@@ -541,7 +543,7 @@ function () {
       var newX = this.xPos + this.xVel;
       var newY = this.yPos + this.yVel;
 
-      if (newX > 600 || newX < 0) {
+      if (newX > 600 - this.xDim || newX < 0) {
         this.yPos = newY;
         this.xVel = 0;
       } else if (newY > 400 - this.yDim / 2 || newY < 0 - this.yDim / 2) {
