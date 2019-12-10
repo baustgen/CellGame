@@ -6,10 +6,17 @@ import Util from './util'
 class Game {
     constructor() {
         this.over = false;
+        this.muted = false;
         this.bacteria = []
         this.user = []
+        this.eatAudio = new Audio('../CellGame/assets/audio/blop.mp3');
+        this.backgroundAudio = new Audio('../CellGame/assets/audio/background.mp3');
+        this.backgroundAudio.loop = true;
+        this.backgroundAudio.play();
         this.addBacteria(7);
         this.addUser();
+
+        this.audioToggle = this.audioToggle.bind(this);
     }
 
     addBacteria(num = 1) {
@@ -57,12 +64,30 @@ class Game {
                     this.over = 'win'
                 } else if (user.scale > bact.scale) {
                     bact.reset()
+                    if (!this.muted) {
+                        this.eatAudio.play();
+                    }
                     user.grow(0.5)
                 } else {
                     this.over = 'loss'
                 }
             }
             
+        }
+    }
+
+    handleSoundButton() {
+        const mute = document.getElementById('mute')
+        mute.addEventListener('click', this.audioToggle);
+    }
+
+    audioToggle() {
+        if (this.muted) {
+            this.muted = false;
+            this.backgroundAudio.play();
+        } else {
+            this.muted = true;
+            this.backgroundAudio.pause();
         }
     }
 

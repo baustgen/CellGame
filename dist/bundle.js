@@ -241,10 +241,16 @@ function () {
     _classCallCheck(this, Game);
 
     this.over = false;
+    this.muted = false;
     this.bacteria = [];
     this.user = [];
+    this.eatAudio = new Audio('../CellGame/assets/audio/blop.mp3');
+    this.backgroundAudio = new Audio('../CellGame/assets/audio/background.mp3');
+    this.backgroundAudio.loop = true;
+    this.backgroundAudio.play();
     this.addBacteria(7);
     this.addUser();
+    this.audioToggle = this.audioToggle.bind(this);
   }
 
   _createClass(Game, [{
@@ -306,11 +312,33 @@ function () {
             this.over = 'win';
           } else if (user.scale > bact.scale) {
             bact.reset();
+
+            if (!this.muted) {
+              this.eatAudio.play();
+            }
+
             user.grow(0.5);
           } else {
             this.over = 'loss';
           }
         }
+      }
+    }
+  }, {
+    key: "handleSoundButton",
+    value: function handleSoundButton() {
+      var mute = document.getElementById('mute');
+      mute.addEventListener('click', this.audioToggle);
+    }
+  }, {
+    key: "audioToggle",
+    value: function audioToggle() {
+      if (this.muted) {
+        this.muted = false;
+        this.backgroundAudio.play();
+      } else {
+        this.muted = true;
+        this.backgroundAudio.pause();
       }
     }
   }]);
