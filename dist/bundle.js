@@ -237,20 +237,24 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 var Game =
 /*#__PURE__*/
 function () {
-  function Game() {
+  function Game(muted) {
     _classCallCheck(this, Game);
 
+    this.muted = muted;
     this.over = false;
-    this.muted = false;
     this.bacteria = [];
     this.user = [];
     this.eatAudio = new Audio('../CellGame/assets/audio/blop.mp3');
     this.backgroundAudio = new Audio('../CellGame/assets/audio/background.mp3');
     this.backgroundAudio.loop = true;
-    this.backgroundAudio.play();
+
+    if (!this.muted) {
+      this.backgroundAudio.play();
+    }
+
     this.addBacteria(7);
     this.addUser();
-    this.audioToggle = this.audioToggle.bind(this);
+    this.handleSoundButton();
   }
 
   _createClass(Game, [{
@@ -303,6 +307,7 @@ function () {
     key: "checkCollision",
     value: function checkCollision() {
       var user = this.user[0];
+      var mute = document.querySelector('.mute');
 
       for (var i = 0; i < this.bacteria.length; i++) {
         var bact = this.bacteria[i];
@@ -310,6 +315,8 @@ function () {
         if (_util__WEBPACK_IMPORTED_MODULE_2__["default"].collision(bact, user)) {
           if (user.scale > 12) {
             this.over = 'win';
+            var newMute = mute.cloneNode(true);
+            mute.parentNode.replaceChild(newMute, mute);
           } else if (user.scale > bact.scale) {
             bact.reset();
 
@@ -320,6 +327,8 @@ function () {
             user.grow(0.5);
           } else {
             this.over = 'loss';
+            var newMute = mute.cloneNode(true);
+            mute.parentNode.replaceChild(newMute, mute);
           }
         }
       }
@@ -327,16 +336,22 @@ function () {
   }, {
     key: "handleSoundButton",
     value: function handleSoundButton() {
-      var mute = document.getElementById('mute');
-      mute.addEventListener('click', this.audioToggle);
+      var mute = document.querySelector('.mute');
+      mute.addEventListener('click', this.audioToggle.bind(this), false);
     }
   }, {
     key: "audioToggle",
     value: function audioToggle() {
-      if (this.muted) {
+      var mute = document.querySelector('.mute');
+      mute.classList.toggle("active");
+      debugger;
+
+      if (this.muted === true) {
+        debugger;
         this.muted = false;
         this.backgroundAudio.play();
       } else {
+        debugger;
         this.muted = true;
         this.backgroundAudio.pause();
       }
@@ -374,8 +389,9 @@ function () {
   function GameView(ctx) {
     _classCallCheck(this, GameView);
 
-    this.game = new _game__WEBPACK_IMPORTED_MODULE_0__["default"]();
     this.ctx = ctx;
+    this.initial = true;
+    this.start = this.start.bind(this);
   }
 
   _createClass(GameView, [{
@@ -383,7 +399,21 @@ function () {
     value: function start() {
       var _this = this;
 
-      this.bindKeyHandlers();
+      if (this.game) {
+        var muted = this.game.muted;
+        this.game = new _game__WEBPACK_IMPORTED_MODULE_0__["default"](muted);
+      } else {
+        this.game = new _game__WEBPACK_IMPORTED_MODULE_0__["default"](false);
+      }
+
+      if (this.initial === true) {
+        this.bindKeyHandlers();
+        this.initial = false;
+      }
+
+      this.ctx.clearRect(0, 0, 600, 400);
+      var canvas = document.getElementById('game-canvas');
+      canvas.removeEventListener("click", this.start);
       this.gameInterval = setInterval(function () {
         if (_this.game.over === false) {
           _this.game.moveObjects();
@@ -399,19 +429,11 @@ function () {
   }, {
     key: "end",
     value: function end(type) {
-      var _this2 = this;
-
       clearInterval(this.gameInterval);
       this.ctx.clearRect(0, 0, 600, 400);
+      this.game.backgroundAudio.pause();
+      this.game.backgroundAudio.remove();
       var canvas = document.getElementById('game-canvas');
-
-      var starter = function starter(e) {
-        _this2.ctx.clearRect(0, 0, 600, 400);
-
-        var testGameView = new GameView(_this2.ctx);
-        testGameView.start();
-        e.target.removeEventListener("click", starter);
-      };
 
       if (type === 'loss') {
         this.ctx.fillStyle = "rgba(0, 0, 0, .6)";
@@ -424,7 +446,7 @@ function () {
         this.ctx.fillText("Avoid large bacteria until you're big enough to eat them!", 300, 225);
         this.ctx.font = "14px Trebuchet MS";
         this.ctx.fillText("Click Here to try again!", 300, 275);
-        canvas.addEventListener("click", starter);
+        canvas.addEventListener("click", this.start);
       } else if (type === 'win') {
         this.ctx.fillStyle = "rgba(255, 255, 255, .8)";
         this.ctx.fillRect(0, 0, 600, 400);
@@ -436,33 +458,33 @@ function () {
         this.ctx.fillText("You're the best bacteria in the Petri dish!", 300, 225);
         this.ctx.font = "14px Trebuchet MS";
         this.ctx.fillText("Click anywhere to try again!", 300, 300);
-        canvas.addEventListener("click", starter);
+        canvas.addEventListener("click", this.start);
       }
     }
   }, {
     key: "bindKeyHandlers",
     value: function bindKeyHandlers() {
-      var _this3 = this;
+      var _this2 = this;
 
       document.addEventListener("keydown", function (e) {
         e.preventDefault();
 
         if (e.keyCode === 65) {
-          _this3.game.user[0].userMove('left');
+          _this2.game.user[0].userMove('left');
         } else if (e.keyCode === 87) {
-          _this3.game.user[0].userMove('up');
+          _this2.game.user[0].userMove('up');
         } else if (e.keyCode === 68) {
-          _this3.game.user[0].userMove('right');
+          _this2.game.user[0].userMove('right');
         } else if (e.keyCode === 83) {
-          _this3.game.user[0].userMove('down');
+          _this2.game.user[0].userMove('down');
         } else if (e.keyCode === 37) {
-          _this3.game.user[0].userMove('left');
+          _this2.game.user[0].userMove('left');
         } else if (e.keyCode === 38) {
-          _this3.game.user[0].userMove('up');
+          _this2.game.user[0].userMove('up');
         } else if (e.keyCode === 39) {
-          _this3.game.user[0].userMove('right');
+          _this2.game.user[0].userMove('right');
         } else if (e.keyCode === 40) {
-          _this3.game.user[0].userMove('down');
+          _this2.game.user[0].userMove('down');
         }
       });
     }

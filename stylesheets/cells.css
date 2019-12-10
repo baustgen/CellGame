@@ -129,13 +129,29 @@ h2 {
 
 .game-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 
 canvas {
     background-image: url(../assets/images/cell_bg.jpg);
     border: 3px solid black;
     border-radius: 5px;
+}
+
+.mute {
+    background-image: url(../assets/images/mute_inactive.png);
+    background-size: contain;
+    height: 40px;
+    width: 40px;
+    position: relative;
+    bottom: 60px;
+    left: 265px;
+}
+
+.active {
+    background-image: url(../assets/images/mute_active.png);
 }
 
 .hidden-images {

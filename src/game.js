@@ -4,19 +4,20 @@ import Util from './util'
 
 
 class Game {
-    constructor() {
+    constructor(muted) {
+        this.muted = muted;
         this.over = false;
-        this.muted = false;
         this.bacteria = []
         this.user = []
         this.eatAudio = new Audio('../CellGame/assets/audio/blop.mp3');
         this.backgroundAudio = new Audio('../CellGame/assets/audio/background.mp3');
         this.backgroundAudio.loop = true;
-        this.backgroundAudio.play();
+        if (!this.muted) {
+            this.backgroundAudio.play();
+        }
         this.addBacteria(7);
         this.addUser();
-
-        this.audioToggle = this.audioToggle.bind(this);
+        this.handleSoundButton()
     }
 
     addBacteria(num = 1) {
@@ -56,12 +57,16 @@ class Game {
 
     checkCollision() {
         let user = this.user[0];
+        const mute = document.querySelector('.mute');
+        
 
         for (let i = 0; i < this.bacteria.length; i++) {
             const bact = this.bacteria[i];
             if (Util.collision(bact, user)) {
                 if (user.scale > 12) {
                     this.over = 'win'
+                    var newMute = mute.cloneNode(true);
+                    mute.parentNode.replaceChild(newMute, mute);
                 } else if (user.scale > bact.scale) {
                     bact.reset()
                     if (!this.muted) {
@@ -70,6 +75,8 @@ class Game {
                     user.grow(0.5)
                 } else {
                     this.over = 'loss'
+                    var newMute = mute.cloneNode(true);
+                    mute.parentNode.replaceChild(newMute, mute);
                 }
             }
             
@@ -77,15 +84,21 @@ class Game {
     }
 
     handleSoundButton() {
-        const mute = document.getElementById('mute')
-        mute.addEventListener('click', this.audioToggle);
+        const mute = document.querySelector('.mute');
+        mute.addEventListener('click', this.audioToggle.bind(this), false);
     }
 
     audioToggle() {
-        if (this.muted) {
+        const mute = document.querySelector('.mute');
+        mute.classList.toggle("active")
+        debugger;
+
+        if (this.muted === true) {
+            debugger;
             this.muted = false;
             this.backgroundAudio.play();
         } else {
+            debugger;
             this.muted = true;
             this.backgroundAudio.pause();
         }

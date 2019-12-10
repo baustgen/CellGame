@@ -3,12 +3,27 @@ import Game from './game'
 
 class GameView {
     constructor(ctx) {
-        this.game = new Game();
         this.ctx = ctx;
+        this.initial = true;
+        this.start = this.start.bind(this)
+        
     }
-
+    
     start() {
-        this.bindKeyHandlers();
+        if (this.game) {
+            const muted = this.game.muted
+            this.game = new Game(muted);
+        } else {
+            this.game = new Game(false)
+        }
+        if (this.initial === true) {
+            this.bindKeyHandlers();
+            this.initial = false;
+        }
+        this.ctx.clearRect(0, 0, 600, 400);
+        const canvas = document.getElementById('game-canvas')
+        canvas.removeEventListener("click", this.start);
+
         this.gameInterval = setInterval(() => {
             if (this.game.over === false) {
                 this.game.moveObjects();
@@ -17,22 +32,16 @@ class GameView {
             } else {
                 this.end(this.game.over)
             }
-        }, 20)
+        }, 20);
     }
 
     end(type) {
         clearInterval(this.gameInterval);
         this.ctx.clearRect(0, 0, 600, 400);
+        this.game.backgroundAudio.pause()
+        this.game.backgroundAudio.remove()
+
         const canvas = document.getElementById('game-canvas')
-
-        const starter = (e) => {
-            this.ctx.clearRect(0, 0, 600, 400);
-            const testGameView = new GameView(this.ctx);
-
-            testGameView.start()
-            e.target.removeEventListener("click", starter)
-
-        }
 
         if (type === 'loss') {
             this.ctx.fillStyle = "rgba(0, 0, 0, .6)";
@@ -46,7 +55,7 @@ class GameView {
             this.ctx.font = "14px Trebuchet MS";
             this.ctx.fillText("Click Here to try again!", 300, 275);
 
-            canvas.addEventListener("click", starter);
+            canvas.addEventListener("click", this.start);
 
         } else if (type === 'win') {
             this.ctx.fillStyle = "rgba(255, 255, 255, .8)";
@@ -60,7 +69,7 @@ class GameView {
             this.ctx.font = "14px Trebuchet MS";
             this.ctx.fillText("Click anywhere to try again!", 300, 300);
 
-            canvas.addEventListener("click", starter);
+            canvas.addEventListener("click", this.start);
         }
     }
 
