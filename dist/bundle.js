@@ -157,7 +157,7 @@ function () {
         x = 615;
       }
 
-      var y = Math.floor(Math.random() * 350);
+      var y = Math.floor(Math.random() * 360) - 10;
       return [x, y];
     }
   }]);

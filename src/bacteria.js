@@ -17,7 +17,7 @@ class Bacteria {
         } else {
             x = 615;
         }
-        const y = Math.floor(Math.random() * 350);
+        const y = Math.floor(Math.random() * 360) - 10;
         return [x, y];
     }
 
