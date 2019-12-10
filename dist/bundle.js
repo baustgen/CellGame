@@ -572,7 +572,7 @@ var Util = {
     var userCenterY = user.yPos + user.yDim / 2;
     var bactCenterY = bact.yPos + bact.yDim / 2;
 
-    if (Math.abs(userCenterX - bactCenterX) < bact.xDim / 2.2 + user.xDim / 2.2 && Math.abs(userCenterY - bactCenterY) < bact.yDim / 2.2 + user.yDim / 2.2) {
+    if (Math.abs(userCenterX - bactCenterX) < bact.xDim / 2.2 + user.xDim / 2.2 && Math.abs(userCenterY - bactCenterY) < bact.yDim / 2.5 + user.yDim / 2.5) {
       return true;
     } else {
       return false;
