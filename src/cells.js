@@ -16,17 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.fillText("Click here to start!", 300, 225);
     
     const starter = (e) => {
-        const testGameView = new GameView(ctx);
+        const gameView = new GameView(ctx);
 
-        testGameView.start()
+        gameView.start()
         e.target.removeEventListener("click", starter)
 
     }
-    
     canvas.addEventListener("click", starter)
-    window.ctx = ctx;
-    window.Bacteria = Bacteria;
-    window.User = User;
-    window.Game = Game;
-    window.GameView = GameView;
 })
