@@ -122,9 +122,9 @@ function () {
       var img = new Image(100, 100);
 
       if (this.vel > 0) {
-        img.src = './documents/images/bacteria_red_right.png';
+        img.src = './assets/images/bacteria_red_right.png';
       } else {
-        img.src = './documents/images/bacteria_red_left.png';
+        img.src = './assets/images/bacteria_red_left.png';
       }
 
       ctx.drawImage(img, this.xPos, this.yPos, this.xDim, this.yDim);
@@ -475,7 +475,7 @@ function () {
     this.scale = 3.5;
     this.xDim = 20 * this.scale;
     this.yDim = 8 * this.scale;
-    this.src = './documents/images/bacteria_blue_right.png';
+    this.src = './assets/images/bacteria_blue_right.png';
   }
 
   _createClass(User, [{
@@ -511,7 +511,7 @@ function () {
             this.xVel -= 1;
           }
 
-          this.src = './documents/images/bacteria_blue_left.png';
+          this.src = './assets/images/bacteria_blue_left.png';
           break;
 
         case 'right':
@@ -519,7 +519,7 @@ function () {
             this.xVel += 1;
           }
 
-          this.src = './documents/images/bacteria_blue_right.png';
+          this.src = './assets/images/bacteria_blue_right.png';
           break;
 
         case 'up':

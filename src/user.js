@@ -7,7 +7,7 @@ class User {
         this.scale = 3.5;
         this.xDim = (20 * this.scale);
         this.yDim = (8 * this.scale);
-        this.src = './documents/images/bacteria_blue_right.png'
+        this.src = './assets/images/bacteria_blue_right.png'
     }
 
     draw(ctx) {
@@ -38,13 +38,13 @@ class User {
                 if (this.xVel > -7) {
                     this.xVel -= 1
                 }
-                this.src = './documents/images/bacteria_blue_left.png'
+                this.src = './assets/images/bacteria_blue_left.png'
                 break;
             case 'right':
                 if (this.xVel < 7) {
                     this.xVel += 1
                 }
-                this.src = './documents/images/bacteria_blue_right.png'
+                this.src = './assets/images/bacteria_blue_right.png'
                 break;
             case 'up':
                 if (this.yVel > -7) {

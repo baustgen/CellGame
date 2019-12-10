@@ -50,13 +50,13 @@ footer {
 .github-link {
     height: 32px;
     width: 32px;
-    background-image: url("../documents/images/GitHub.png");
+    background-image: url("../assets/images/GitHub.png");
 }
 
 .linkedin-link {
     height: 32px;
     width: 32px;
-    background-image: url("../documents/images/LinkedIn.png");
+    background-image: url("../assets/images/LinkedIn.png");
 }
 
 .content-container {
@@ -133,7 +133,7 @@ h2 {
 }
 
 canvas {
-    background-image: url(../documents/images/cell_bg.jpg);
+    background-image: url(../assets/images/cell_bg.jpg);
     border: 3px solid black;
     border-radius: 5px;
 }

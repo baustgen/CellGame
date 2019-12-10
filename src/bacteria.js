@@ -24,9 +24,9 @@ class Bacteria {
     draw(ctx) {
         let img = new Image(100,100)
         if (this.vel > 0) {
-            img.src = './documents/images/bacteria_red_right.png'
+            img.src = './assets/images/bacteria_red_right.png'
         } else {
-            img.src = './documents/images/bacteria_red_left.png'
+            img.src = './assets/images/bacteria_red_left.png'
         }
         ctx.drawImage(img, this.xPos, this.yPos, this.xDim, this.yDim);
     }
