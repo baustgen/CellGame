@@ -8,7 +8,7 @@ class Game {
         this.muted = muted;
         this.over = false;
         this.bacteria = []
-        this.user = []
+        this.user = new User()
         this.eatAudio = new Audio('../CellGame/assets/audio/blop.mp3');
         this.backgroundAudio = new Audio('../CellGame/assets/audio/background.mp3');
         this.backgroundAudio.loop = true;
@@ -16,7 +16,6 @@ class Game {
             this.backgroundAudio.play();
         }
         this.addBacteria(7);
-        this.addUser();
         this.handleSoundButton()
     }
 
@@ -25,11 +24,6 @@ class Game {
             let bact = new Bacteria();
             this.bacteria.push(bact);     
         }
-    }
-
-    addUser() {
-            let u = new User();
-            this.user.push(u);     
     }
 
     draw(ctx) {
@@ -41,7 +35,7 @@ class Game {
             const bact = this.bacteria[i];
             bact.draw(ctx);
         }
-        this.user[0].draw(ctx);
+        this.user.draw(ctx);
     }
 
     moveObjects() {
@@ -52,11 +46,11 @@ class Game {
                 bact.reset();
             }
         }
-        this.user[0].move()
+        this.user.move()
     }
 
     checkCollision() {
-        let user = this.user[0];
+        let user = this.user;
         const mute = document.querySelector('.mute');
         
 

@@ -152,9 +152,9 @@ function () {
     key: "randomPosition",
     value: function randomPosition() {
       var x;
-      var coin = Math.random();
+      var coin = Math.floor(Math.random() * 2);
 
-      if (coin > 0.5) {
+      if (coin === 1) {
         x = -200;
       } else {
         x = 750;
@@ -237,7 +237,7 @@ function () {
     this.muted = muted;
     this.over = false;
     this.bacteria = [];
-    this.user = [];
+    this.user = new _user__WEBPACK_IMPORTED_MODULE_1__["default"]();
     this.eatAudio = new Audio('../CellGame/assets/audio/blop.mp3');
     this.backgroundAudio = new Audio('../CellGame/assets/audio/background.mp3');
     this.backgroundAudio.loop = true;
@@ -247,7 +247,6 @@ function () {
     }
 
     this.addBacteria(7);
-    this.addUser();
     this.handleSoundButton();
   }
 
@@ -260,12 +259,6 @@ function () {
         var bact = new _bacteria__WEBPACK_IMPORTED_MODULE_0__["default"]();
         this.bacteria.push(bact);
       }
-    }
-  }, {
-    key: "addUser",
-    value: function addUser() {
-      var u = new _user__WEBPACK_IMPORTED_MODULE_1__["default"]();
-      this.user.push(u);
     }
   }, {
     key: "draw",
@@ -281,7 +274,7 @@ function () {
         bact.draw(ctx);
       }
 
-      this.user[0].draw(ctx);
+      this.user.draw(ctx);
     }
   }, {
     key: "moveObjects",
@@ -295,12 +288,12 @@ function () {
         }
       }
 
-      this.user[0].move();
+      this.user.move();
     }
   }, {
     key: "checkCollision",
     value: function checkCollision() {
-      var user = this.user[0];
+      var user = this.user;
       var mute = document.querySelector('.mute');
 
       for (var i = 0; i < this.bacteria.length; i++) {
@@ -462,42 +455,42 @@ function () {
 
         switch (e.keyCode) {
           case 65:
-            _this2.game.user[0].userMove('left');
+            _this2.game.user.userMove('left');
 
             break;
 
           case 87:
-            _this2.game.user[0].userMove('up');
+            _this2.game.user.userMove('up');
 
             break;
 
           case 68:
-            _this2.game.user[0].userMove('right');
+            _this2.game.user.userMove('right');
 
             break;
 
           case 83:
-            _this2.game.user[0].userMove('down');
+            _this2.game.user.userMove('down');
 
             break;
 
           case 37:
-            _this2.game.user[0].userMove('left');
+            _this2.game.user.userMove('left');
 
             break;
 
           case 38:
-            _this2.game.user[0].userMove('up');
+            _this2.game.user.userMove('up');
 
             break;
 
           case 39:
-            _this2.game.user[0].userMove('right');
+            _this2.game.user.userMove('right');
 
             break;
 
           case 40:
-            _this2.game.user[0].userMove('down');
+            _this2.game.user.userMove('down');
 
             break;
 

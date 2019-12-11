@@ -79,35 +79,35 @@ class GameView {
             e.preventDefault();
             switch (e.keyCode) {
                 case 65:
-                    this.game.user[0].userMove('left');
+                    this.game.user.userMove('left');
                     break;
             
                 case 87:
-                    this.game.user[0].userMove('up');
+                    this.game.user.userMove('up');
                     break;
             
                 case 68:
-                    this.game.user[0].userMove('right');
+                    this.game.user.userMove('right');
                     break;
             
                 case 83:
-                    this.game.user[0].userMove('down');
+                    this.game.user.userMove('down');
                     break;
             
                 case 37:
-                    this.game.user[0].userMove('left');
+                    this.game.user.userMove('left');
                     break;
             
                 case 38:
-                    this.game.user[0].userMove('up');
+                    this.game.user.userMove('up');
                     break;
             
                 case 39:
-                    this.game.user[0].userMove('right');
+                    this.game.user.userMove('right');
                     break;
             
                 case 40:
-                    this.game.user[0].userMove('down');
+                    this.game.user.userMove('down');
                     break;
             
                 case 77:
