@@ -460,24 +460,54 @@ function () {
       document.addEventListener("keydown", function (e) {
         e.preventDefault();
 
-        if (e.keyCode === 65) {
-          _this2.game.user[0].userMove('left');
-        } else if (e.keyCode === 87) {
-          _this2.game.user[0].userMove('up');
-        } else if (e.keyCode === 68) {
-          _this2.game.user[0].userMove('right');
-        } else if (e.keyCode === 83) {
-          _this2.game.user[0].userMove('down');
-        } else if (e.keyCode === 37) {
-          _this2.game.user[0].userMove('left');
-        } else if (e.keyCode === 38) {
-          _this2.game.user[0].userMove('up');
-        } else if (e.keyCode === 39) {
-          _this2.game.user[0].userMove('right');
-        } else if (e.keyCode === 40) {
-          _this2.game.user[0].userMove('down');
-        } else if (e.keyCode === 77) {
-          _this2.game.audioToggle();
+        switch (e.keyCode) {
+          case 65:
+            _this2.game.user[0].userMove('left');
+
+            break;
+
+          case 87:
+            _this2.game.user[0].userMove('up');
+
+            break;
+
+          case 68:
+            _this2.game.user[0].userMove('right');
+
+            break;
+
+          case 83:
+            _this2.game.user[0].userMove('down');
+
+            break;
+
+          case 37:
+            _this2.game.user[0].userMove('left');
+
+            break;
+
+          case 38:
+            _this2.game.user[0].userMove('up');
+
+            break;
+
+          case 39:
+            _this2.game.user[0].userMove('right');
+
+            break;
+
+          case 40:
+            _this2.game.user[0].userMove('down');
+
+            break;
+
+          case 77:
+            _this2.game.audioToggle();
+
+            break;
+
+          default:
+            break;
         }
       });
     }

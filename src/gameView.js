@@ -77,25 +77,46 @@ class GameView {
 
         document.addEventListener("keydown", (e) => {
             e.preventDefault();
-            if (e.keyCode === 65) {
-                this.game.user[0].userMove('left');
-            } else if (e.keyCode === 87) {
-                this.game.user[0].userMove('up');
-            } else if (e.keyCode === 68) {
-                this.game.user[0].userMove('right');
-            } else if (e.keyCode === 83) {
-                this.game.user[0].userMove('down');
-            } else if (e.keyCode === 37) {
-                this.game.user[0].userMove('left');
-            } else if (e.keyCode === 38) {
-                this.game.user[0].userMove('up');
-            } else if (e.keyCode === 39) {
-                this.game.user[0].userMove('right');
-            } else if (e.keyCode === 40) {
-                this.game.user[0].userMove('down');
-            }  else if (e.keyCode === 77) {
-                this.game.audioToggle();
-            } 
+            switch (e.keyCode) {
+                case 65:
+                    this.game.user[0].userMove('left');
+                    break;
+            
+                case 87:
+                    this.game.user[0].userMove('up');
+                    break;
+            
+                case 68:
+                    this.game.user[0].userMove('right');
+                    break;
+            
+                case 83:
+                    this.game.user[0].userMove('down');
+                    break;
+            
+                case 37:
+                    this.game.user[0].userMove('left');
+                    break;
+            
+                case 38:
+                    this.game.user[0].userMove('up');
+                    break;
+            
+                case 39:
+                    this.game.user[0].userMove('right');
+                    break;
+            
+                case 40:
+                    this.game.user[0].userMove('down');
+                    break;
+            
+                case 77:
+                    this.game.audioToggle();
+                    break;
+            
+                default:
+                    break;
+            }
         })
     }
 
