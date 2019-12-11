@@ -24,6 +24,7 @@ Within the Cells game, users are able to:
 - Move their bacteria around the game
 - Toggle audio playback on/off
 
+
 ### Bacteria
 
 Bacteria are rendered using HTML canvas and JavaScript. Enemy bacteria are randomly generated with a variety of sizes, starting positions, and velocities. 
@@ -55,6 +56,8 @@ class Bacteria {
     }
 }
 ```
+---
+
 
 ### User Control
 
@@ -108,6 +111,7 @@ bindKeyHandlers() {
     })
 }
 ```
+--- 
 
 
 ### Sound
@@ -132,3 +136,4 @@ class Game {
     }
 }
 ```
+---
