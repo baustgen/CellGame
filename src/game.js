@@ -15,7 +15,7 @@ class Game {
         if (!this.muted) {
             this.backgroundAudio.play();
         }
-        this.addBacteria(7);
+        this.addBacteria(8);
         this.handleSoundButton()
     }
 
@@ -28,8 +28,8 @@ class Game {
 
     draw(ctx) {
         ctx.clearRect(0, 0, 700, 500);
-        if (this.bacteria.length < 7) {
-            this.addBacteria(7 - this.bacteria.length)
+        if (this.bacteria.length < 8) {
+            this.addBacteria(8 - this.bacteria.length)
         }
         for (let i = 0; i < this.bacteria.length; i++) {
             const bact = this.bacteria[i];

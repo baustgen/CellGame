@@ -152,10 +152,10 @@ function () {
     key: "randomPosition",
     value: function randomPosition() {
       var x;
-      var coin = Math.floor(Math.random() * 2);
+      var coin = Math.random();
 
-      if (coin === 1) {
-        x = -200;
+      if (coin < 0.5) {
+        x = -150;
       } else {
         x = 750;
       }
@@ -246,7 +246,7 @@ function () {
       this.backgroundAudio.play();
     }
 
-    this.addBacteria(7);
+    this.addBacteria(8);
     this.handleSoundButton();
   }
 
@@ -265,8 +265,8 @@ function () {
     value: function draw(ctx) {
       ctx.clearRect(0, 0, 700, 500);
 
-      if (this.bacteria.length < 7) {
-        this.addBacteria(7 - this.bacteria.length);
+      if (this.bacteria.length < 8) {
+        this.addBacteria(8 - this.bacteria.length);
       }
 
       for (var i = 0; i < this.bacteria.length; i++) {
