@@ -15,9 +15,9 @@ class Bacteria {
 
     static randomPosition() {
         let x;
-        let coin = Math.floor(Math.random() * 2);
-        if (coin === 1) {
-            x = -200;
+        let coin = Math.random();
+        if (coin < 0.5) {
+            x = -150;
         } else {
             x = 750;
         }
@@ -46,7 +46,9 @@ class Bacteria {
         const pos = Bacteria.randomPosition()
         this.xPos = pos[0];
         this.yPos = pos[1];
-        this.vel = this.xPos < 500 ? Math.floor(Math.random() * 7) + 2 : Math.floor(Math.random() * -7) - 2;
+        this.vel = this.xPos < 500 
+            ? Math.floor(Math.random() * 7) + 2 
+            : Math.floor(Math.random() * -7) - 2;
     }
 }
 
