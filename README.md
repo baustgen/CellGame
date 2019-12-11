@@ -58,7 +58,7 @@ class Bacteria {
 
 ### User Control
 
-Users can control the blue bacteria with the `WASD` or arrow keys. Additionally they can toggle audio with the "M" key. These keybindings were achieved with a JavaScript `keydown` event listener using a switch statement to fire off the appropriate action based on the `keyCode` of the pressed key.
+Users can control the blue bacteria with the `WASD` or arrow keys. Additionally they can toggle audio with the `M` key. These keybindings were achieved with a JavaScript `keydown` event listener using a switch statement to fire off the appropriate action based on the `keyCode` of the pressed key.
 
 ```javascript
 bindKeyHandlers() {
