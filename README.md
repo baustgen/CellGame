@@ -1,4 +1,5 @@
-# [Cells](https://baustgen.github.io/CellGame/)
+# Cells
+[Live Link](https://baustgen.github.io/CellGame/)
 
 ![screenshot of live game](./assets/images/SampleShot.png)
 
