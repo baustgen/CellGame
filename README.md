@@ -26,7 +26,7 @@ Within the Cells game, users are able to:
 
 ### Bacteria
 
-Fish are rendered using HTML canvas and JavaScript. Enemy bacteria are randomly generated with a variety of sizes, starting positions, and velocities. 
+Bacteria are rendered using HTML canvas and JavaScript. Enemy bacteria are randomly generated with a variety of sizes, starting positions, and velocities. 
 
 ```javascript
 class Bacteria {
@@ -58,7 +58,7 @@ class Bacteria {
 
 ### User Control
 
-Users can control the blue bacteria with the "WASD" or arrow keys. Additionally they can toggle audio with the "M" key. THese keybindings were achieved with a JavaScript `keydown` event listener using a switch statement to fire off the appropriate action based on the `keyCode` of the pressed key.
+Users can control the blue bacteria with the `WASD` or arrow keys. Additionally they can toggle audio with the "M" key. These keybindings were achieved with a JavaScript `keydown` event listener using a switch statement to fire off the appropriate action based on the `keyCode` of the pressed key.
 
 ```javascript
 bindKeyHandlers() {
@@ -112,7 +112,7 @@ bindKeyHandlers() {
 
 ### Sound
 
-Game sounds are implemented using vanilla JavaScript. Background and collision audio can be toggled by the user by clicking on the speaker icon or by pressing the "M" key. Mute status is passed to the Game constructor and stored as an instance variable in order to maintain audio status for subsequent games in the same window.
+Game sounds are implemented using vanilla JavaScript. Background and collision audio can be toggled by the user by clicking on the speaker icon or by pressing the `M` key. Mute status is passed to the Game constructor and stored as an instance variable in order to maintain audio status for subsequent games in the same window.
 
 ```javascript
 class Game {
